@@ -10,10 +10,10 @@ public class ClienteController {
 
 	@GetMapping
 	String cliente() {
-		return "cliente/index";
+		return "/cliente/index";
 	}
 	@GetMapping("/cadastro")
 	String cadastro() {
-		return "cliente/cadastro";
+		return "/cliente/cadastro";
 	}
 }
