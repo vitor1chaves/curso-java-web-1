@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html th:fragment="layout (template)">
-<head>
-<title>Sistema de Cadastro</title>
-</head>
+<div th:include="fragments/header :: head" />
 <body>
-	Menu:
+	<div th:include="fragments/menu :: menu" />
 	<div th:replace="${template}" />
 	footer
 
