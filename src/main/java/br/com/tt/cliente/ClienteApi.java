@@ -3,8 +3,11 @@ package br.com.tt.cliente;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,12 +24,19 @@ public class ClienteApi {
 	}
 
 	@GetMapping("{id}")
-	Cliente cliente(@PathVariable(name = "id") Integer id) {
-		List<Cliente> clientes = service.consulta();
-		if (id > clientes.size()) {
-return new Cliente();
-		}
-		return clientes.get(id - 1);
+	Cliente cliente(@PathVariable(name = "id") Long id) {
+
+		return service.buscar(id);
+	}
+
+	@PostMapping
+	Cliente salvar(@RequestBody Cliente cliente) {
+		return service.salvar(cliente);
+	}
+
+	@DeleteMapping("{id}")
+	void excluir(@PathVariable("id") Long id) {
+		service.excluir(id);
 	}
 
 }
