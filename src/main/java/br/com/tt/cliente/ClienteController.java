@@ -20,14 +20,14 @@ public class ClienteController {
 
 	@GetMapping
 	ModelAndView cliente() {
-		ModelAndView mv = new ModelAndView("/cliente/index");
+		ModelAndView mv = new ModelAndView("cliente/index");
 		mv.addObject("clientes", service.consulta());
 		return mv;
 	}
 
 	@GetMapping("/cadastro")
 	ModelAndView cadastro(Cliente cliente) {
-		ModelAndView mv = new ModelAndView("/cliente/cadastro");
+		ModelAndView mv = new ModelAndView("cliente/cadastro");
 		mv.addObject("cliente", cliente);
 		return mv;
 	}
