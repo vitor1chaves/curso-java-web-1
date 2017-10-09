@@ -1,6 +1,6 @@
 package br.com.tt.cliente;
 
-import static javax.persistence.GenerationType.IDENTITY;
+import static javax.persistence.GenerationType.AUTO;
 import static javax.persistence.TemporalType.DATE;
 
 import java.util.Date;
@@ -8,6 +8,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.validation.constraints.Pattern;
@@ -20,7 +21,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Cliente {
 
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
+	@GeneratedValue(strategy = AUTO)
 	private Long id;
 	@Column(nullable = false)
 	@NotBlank(message="Nome é informação Obrigatório")
