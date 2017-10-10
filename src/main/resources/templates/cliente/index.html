@@ -24,6 +24,7 @@
 					<tr th:each="c : ${clientes}">
 						<td th:text="${c.id}"></td>
 						<td th:text="${c.nome}"></td>
+<!-- 						<td th:text="${beans.cv.cpf(c.cpf)}"></td> -->
 						<td th:text="${c.cpf}"></td>
 						<td th:text="${#dates.format(c.data, 'dd / MMMM / yyyy')}"></td>
 						<td>
