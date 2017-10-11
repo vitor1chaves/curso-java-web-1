@@ -7,6 +7,7 @@ public class CadastroReceita {
 
 	private String cnpj;
 	private String fantasia;
+	
 
 	public String getCnpj() {
 		return cnpj;

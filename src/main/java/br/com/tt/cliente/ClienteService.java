@@ -1,14 +1,15 @@
 package br.com.tt.cliente;
 
+import static br.com.tt.util.HttpClient.get;
+import static br.com.tt.util.Util.jsontoObject;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
+import br.com.tt.exception.SistemaException;
 import br.com.tt.model.CadastroReceita;
-import br.com.tt.util.HttpClient;
 
 @Service
 public class ClienteService {
@@ -18,7 +19,7 @@ public class ClienteService {
 
 	List<Cliente> consulta() {
 
-		//List<Cliente> resultado = repository.findByNomeLike("%4%");
+		// List<Cliente> resultado = repository.findByNomeLike("%4%");
 		return repository.findAll();
 	}
 
@@ -34,15 +35,13 @@ public class ClienteService {
 	public void excluir(Long id) {
 		repository.delete(id);
 	}
-	public CadastroReceita consultaReceita(String cnpj) throws Exception{
-		ObjectMapper mapper = new ObjectMapper();
-		String url = "https://www.receitaws.com.br/v1/cnpj/27865757000102";
-		String receitaJson = HttpClient.get(url);
-		CadastroReceita cadReceita = mapper.readValue(receitaJson, CadastroReceita.class);
-		System.out.println(cadReceita.getFantasia());
-		return null;
+
+	public CadastroReceita consultaReceita(String cnpj) throws SistemaException {
+		return jsontoObject(get("https://www.receitaws.com.br/v1/cnpj/" + cnpj), CadastroReceita.class);
 	}
-	public static void main(String[] args) throws Exception{
-		new ClienteService().consultaReceita("");
+
+	public static void main(String[] args) throws SistemaException {
+		CadastroReceita cad = new ClienteService().consultaReceita("27865757000102");
+		System.out.println(cad.getFantasia());
 	}
 }
