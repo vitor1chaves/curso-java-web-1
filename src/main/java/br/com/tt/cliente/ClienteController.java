@@ -57,7 +57,7 @@ public class ClienteController {
 
 	@GetMapping("/consulta/receita")
 	ModelAndView consutaReceita() {
-		ModelAndView mv = new ModelAndView("/cliente/consulta-receita");
+		ModelAndView mv = new ModelAndView("cliente/consulta-receita");
 		mv.addObject("cadastroReceita", new CadastroReceita());
 		return mv;
 	}
